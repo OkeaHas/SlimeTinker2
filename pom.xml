@@ -77,6 +77,18 @@
             <id>aikar</id>
             <url>https://repo.aikar.co/content/groups/aikar/</url>
         </repository>
+        <repository>
+            <id>jeffMediaPublic</id>
+            <url>https://repo.jeff-media.com/public</url>
+        </repository>
+        <repository>
+            <id>mcmmo-repo</id>
+            <url>https://nexus.neetgames.com/repository/maven-public</url>
+        </repository>
+        <repository>
+            <id>bg-repo</id>
+            <url>https://repo.bg-software.com/repository/api/</url>
+        </repository>
     </repositories>
 
     <!-- Thanks to dough here! -->
@@ -178,19 +190,10 @@
                 <artifactId>maven-shade-plugin</artifactId>
                 <version>3.6.0</version>
                 <configuration>
-                    <minimizeJar>true</minimizeJar>
                     <relocations>
                         <relocation>
-                            <pattern>io.github.mooy1.infinitylib</pattern>
-                            <shadedPattern>io.github.sefiraat.slimetinker.infinitylib</shadedPattern>
-                        </relocation>
-                        <relocation>
                             <pattern>org.bstats</pattern>
-                            <shadedPattern>io.github.sefiraat.slimetinker.bstats</shadedPattern>
-                        </relocation>
-                        <relocation>
-                            <pattern>co.aikar.commands</pattern>
-                            <shadedPattern>io.github.sefiraat.slimetinker.acf</shadedPattern>
+                            <shadedPattern>io.github.sefiraat.networks.bstats</shadedPattern>
                         </relocation>
                     </relocations>
                     <filters>
@@ -211,14 +214,6 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>11</source>
-                    <target>11</target>
-                </configuration>
-            </plugin>
         </plugins>
         <defaultGoal>clean package</defaultGoal>
         <sourceDirectory>${basedir}/src/main/java</sourceDirectory>
@@ -228,25 +223,35 @@
                 <directory>${basedir}/src/main/resources</directory>
                 <filtering>true</filtering>
                 <includes>
-                    <include>*</include>
+                    <include>**/*.*</include>
+                    <include>tags/*.json</include>
                 </includes>
             </resource>
         </resources>
     </build>
 
+        <!-- core -->
     <dependencies>
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
-            <version>1.19-R0.1-SNAPSHOT</version>
+            <version>1.21.4-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.github.Slimefun</groupId>
             <artifactId>Slimefun4</artifactId>
-            <version>d25f22439e</version>
+            <version>experimental-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>dev.sefiraat</groupId>
+            <artifactId>SefiLib</artifactId>
+            <version>0.2.6</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- support dependency -->
         <dependency>
             <groupId>io.github.mooy1</groupId>
             <artifactId>InfinityLib</artifactId>
