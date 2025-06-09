@@ -254,9 +254,9 @@
         <!-- support dependency -->
         <dependency>
             <groupId>io.github.mooy1</groupId>
-            <artifactId>InfinityLib</artifactId>
-            <version>7e03c79</version>
-            <scope>compile</scope>
+            <artifactId>InfinityExpansion</artifactId>
+            <version>90e11bc</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.bstats</groupId>

@@ -1,7 +1,7 @@
 package io.github.sefiraat.slimetinker.items.workstations.swappingstation;
 
 import com.google.common.base.Preconditions;
-import io.github.mooy1.infinitylib.machines.MenuBlock;
+import io.github.mooy1.infinityexpansion.infinitylib.machines.MenuBlock;
 import io.github.sefiraat.slimetinker.utils.GUIItems;
 import io.github.sefiraat.slimetinker.utils.Ids;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;

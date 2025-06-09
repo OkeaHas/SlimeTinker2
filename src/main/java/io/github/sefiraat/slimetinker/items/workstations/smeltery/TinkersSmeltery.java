@@ -1,6 +1,7 @@
 package io.github.sefiraat.slimetinker.items.workstations.smeltery;
 
-import io.github.mooy1.infinitylib.machines.TickingMenuBlock;
+import io.github.mooy1.infinityexpansion.infinitylib.machines.TickingMenuBlock;
+import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.items.Materials;
 import io.github.sefiraat.slimetinker.utils.GUIItems;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
@@ -175,6 +176,11 @@ public class TinkersSmeltery extends TickingMenuBlock {
             }
         }
         return blockMapZY;
+    }
+
+    public void register(SlimeTinker p) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'register'");
     }
 
 }

@@ -1,6 +1,6 @@
 package io.github.sefiraat.slimetinker.items.workstations.workbench;
 
-import io.github.mooy1.infinitylib.machines.CraftingBlock;
+import io.github.mooy1.infinityexpansion.infinitylib.machines.CraftingBlock;
 import io.github.sefiraat.slimetinker.items.Workstations;
 import io.github.sefiraat.slimetinker.utils.GUIItems;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;

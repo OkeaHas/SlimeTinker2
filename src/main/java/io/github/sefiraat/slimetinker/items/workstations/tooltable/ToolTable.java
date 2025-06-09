@@ -1,6 +1,6 @@
 package io.github.sefiraat.slimetinker.items.workstations.tooltable;
 
-import io.github.mooy1.infinitylib.machines.TickingMenuBlock;
+import io.github.mooy1.infinityexpansion.infinitylib.machines.TickingMenuBlock;
 import io.github.sefiraat.slimetinker.items.Guide;
 import io.github.sefiraat.slimetinker.items.templates.ToolDefinition;
 import io.github.sefiraat.slimetinker.utils.GUIItems;

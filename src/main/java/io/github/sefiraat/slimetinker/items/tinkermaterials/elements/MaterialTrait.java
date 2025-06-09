@@ -7,6 +7,7 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Stack;
 import java.util.function.Consumer;
 
 import javax.annotation.Nonnull;
@@ -14,7 +15,7 @@ import javax.annotation.Nullable;
 
 import org.bukkit.inventory.ItemStack;
 
-import io.github.mooy1.infinitylib.common.StackUtils;
+import io.github.mooy1.infinityexpansion.infinitylib.common.StackUtils;
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.events.friend.EventFriend;
 import io.github.sefiraat.slimetinker.events.friend.TraitEventType;
@@ -131,7 +132,7 @@ public class MaterialTrait {
                     "{0}_TRAIT_{1}_{2}",
                     traitName.toUpperCase(Locale.ROOT).replace(" ", "_"),
                     partType.getItemId().toUpperCase(Locale.ROOT),
-                    StackUtils.getIdOrType(parentCM.getRepresentativeStack())
+                    StackUtils(parentCM.getRepresentativeStack())
                 ),
                 getTraitTexture(addedBy),
                 ThemeItemType.PROP,
@@ -140,6 +141,11 @@ public class MaterialTrait {
             );
         this.item = new SlimefunItem(ItemGroups.TRAITS, itemStack, DummySmelteryTrait.TYPE, propRecipe(partType, parentCM.getRepresentativeStack()));
         item.register(SlimeTinker.getInstance());
+    }
+
+    private Object StackUtils(ItemStack representativeStack) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'StackUtils'");
     }
 
     @Nonnull

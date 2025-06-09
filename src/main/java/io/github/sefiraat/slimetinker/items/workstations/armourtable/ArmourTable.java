@@ -1,7 +1,7 @@
 package io.github.sefiraat.slimetinker.items.workstations.armourtable;
 
-import io.github.mooy1.infinitylib.common.StackUtils;
-import io.github.mooy1.infinitylib.machines.MenuBlock;
+import io.github.mooy1.infinityexpansion.infinitylib.common.StackUtils;
+import io.github.mooy1.infinityexpansion.infinitylib.machines.MenuBlock;
 import io.github.sefiraat.slimetinker.items.Guide;
 import io.github.sefiraat.slimetinker.items.templates.ArmourDefinition;
 import io.github.sefiraat.slimetinker.utils.GUIItems;

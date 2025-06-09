@@ -12,7 +12,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import io.github.mooy1.infinitylib.common.StackUtils;
+import io.github.mooy1.infinityexpansion.infinitylib.common.StackUtils;
 import static io.github.sefiraat.slimetinker.events.friend.EventChannels.checkBoots;
 import static io.github.sefiraat.slimetinker.events.friend.EventChannels.checkChestplate;
 import static io.github.sefiraat.slimetinker.events.friend.EventChannels.checkHelm;

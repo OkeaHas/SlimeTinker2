@@ -1,6 +1,6 @@
 package io.github.sefiraat.slimetinker.items.workstations.repairbench;
 
-import io.github.mooy1.infinitylib.machines.MenuBlock;
+import io.github.mooy1.infinityexpansion.infinitylib.machines.MenuBlock;
 import io.github.sefiraat.slimetinker.items.templates.RepairkitTemplate;
 import io.github.sefiraat.slimetinker.utils.GUIItems;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
