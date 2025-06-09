@@ -1,13 +1,9 @@
 package io.github.sefiraat.slimetinker.listeners;
 
-import io.github.mooy1.infinitylib.common.StackUtils;
-import io.github.sefiraat.slimetinker.events.friend.EventFriend;
-import io.github.sefiraat.slimetinker.events.friend.TraitEventType;
-import io.github.sefiraat.slimetinker.items.Materials;
-import io.github.sefiraat.slimetinker.modifiers.Modifications;
-import io.github.sefiraat.slimetinker.utils.GeneralUtils;
-import io.github.sefiraat.slimetinker.utils.Ids;
-import io.github.sefiraat.slimetinker.utils.ItemUtils;
+import java.util.Map;
+
+import javax.annotation.Nonnull;
+
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerItemBreakEvent;
@@ -16,15 +12,20 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import javax.annotation.Nonnull;
-import java.util.Map;
-
+import io.github.mooy1.infinitylib.common.StackUtils;
 import static io.github.sefiraat.slimetinker.events.friend.EventChannels.checkBoots;
 import static io.github.sefiraat.slimetinker.events.friend.EventChannels.checkChestplate;
 import static io.github.sefiraat.slimetinker.events.friend.EventChannels.checkHelm;
 import static io.github.sefiraat.slimetinker.events.friend.EventChannels.checkLeggings;
 import static io.github.sefiraat.slimetinker.events.friend.EventChannels.checkTool;
 import static io.github.sefiraat.slimetinker.events.friend.EventChannels.settlePotionEffects;
+import io.github.sefiraat.slimetinker.events.friend.EventFriend;
+import io.github.sefiraat.slimetinker.events.friend.TraitEventType;
+import io.github.sefiraat.slimetinker.items.Materials;
+import io.github.sefiraat.slimetinker.modifiers.Modifications;
+import io.github.sefiraat.slimetinker.utils.GeneralUtils;
+import io.github.sefiraat.slimetinker.utils.Ids;
+import io.github.sefiraat.slimetinker.utils.ItemUtils;
 
 public class DurabilityListener implements Listener {
 
@@ -103,8 +104,8 @@ public class DurabilityListener implements Listener {
     private void modChecks(ItemStack damagedItem, PlayerItemDamageEvent event) {
         Map<String, Integer> modLevels = Modifications.getAllModLevels(damagedItem);
 
-        if (modLevels.containsKey(StackUtils.getIdOrType(Materials.MOD_PLATE))) { // PLATE
-            modCheckPlate(damagedItem, modLevels.get(StackUtils.getIdOrType(Materials.MOD_PLATE)), event);
+        if (modLevels.containsKey(StackUtils.getIdOrType(Materials.MOD_PLATE.item()))) { // PLATE
+            modCheckPlate(damagedItem, modLevels.get(StackUtils.getIdOrType(Materials.MOD_PLATE.item())), event);
         }
     }
 

@@ -1,5 +1,12 @@
 package io.github.sefiraat.slimetinker.runnables;
 
+import java.util.HashSet;
+import java.util.Set;
+import java.util.UUID;
+import java.util.concurrent.ThreadLocalRandom;
+
+import javax.annotation.Nonnull;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.Location;
@@ -7,12 +14,6 @@ import org.bukkit.Particle;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
-
-import javax.annotation.Nonnull;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.UUID;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class TrailTick extends BukkitRunnable {
 
@@ -40,7 +41,7 @@ public class TrailTick extends BukkitRunnable {
                 double x = ThreadLocalRandom.current().nextDouble(-0.5, 0.5);
                 double z = ThreadLocalRandom.current().nextDouble(-0.5, 0.5);
                 Location spawnLocation = backLocation.clone().add(x, y, z);
-                location.getWorld().spawnParticle(Particle.REDSTONE, spawnLocation, 1, p ? dustOptionsG : dustOptionsW);
+                location.getWorld().spawnParticle(Particle.DUST, spawnLocation, 1, p ? dustOptionsG : dustOptionsW);
             }
         }
     }

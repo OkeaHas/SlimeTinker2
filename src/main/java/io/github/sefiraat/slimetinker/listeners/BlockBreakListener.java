@@ -1,16 +1,11 @@
 package io.github.sefiraat.slimetinker.listeners;
 
-import io.github.sefiraat.slimetinker.events.friend.EventChannels;
-import io.github.sefiraat.slimetinker.events.friend.EventFriend;
-import io.github.sefiraat.slimetinker.events.friend.TraitEventType;
-import io.github.sefiraat.slimetinker.modifiers.Modifications;
-import io.github.sefiraat.slimetinker.utils.BlockUtils;
-import io.github.sefiraat.slimetinker.utils.Experience;
-import io.github.sefiraat.slimetinker.utils.Ids;
-import io.github.sefiraat.slimetinker.utils.ItemUtils;
-import io.github.sefiraat.slimetinker.utils.Keys;
-import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
-import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -29,11 +24,17 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import io.github.sefiraat.slimetinker.events.friend.EventChannels;
+import io.github.sefiraat.slimetinker.events.friend.EventFriend;
+import io.github.sefiraat.slimetinker.events.friend.TraitEventType;
+import io.github.sefiraat.slimetinker.modifiers.Modifications;
+import io.github.sefiraat.slimetinker.utils.BlockUtils;
+import io.github.sefiraat.slimetinker.utils.Experience;
+import io.github.sefiraat.slimetinker.utils.Ids;
+import io.github.sefiraat.slimetinker.utils.ItemUtils;
+import io.github.sefiraat.slimetinker.utils.Keys;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
+import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 
 public class BlockBreakListener implements Listener {
 
@@ -175,7 +176,7 @@ public class BlockBreakListener implements Listener {
 
         int lapisLevel = modLevels.get(Material.LAPIS_LAZULI.toString());
         ItemStack dummyFortune = new ItemStack(Material.DIAMOND_PICKAXE);
-        dummyFortune.addEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 3);
+        dummyFortune.addEnchantment(Enchantment.FORTUNE, 3);
 
         List<Material> materialList = new ArrayList<>();
 
@@ -196,7 +197,7 @@ public class BlockBreakListener implements Listener {
                     addDrops.add(additionalDrop);
                     Location location = block.getLocation().clone().add(0.5, 0.5, 0.5);
                     Particle.DustOptions dustOptions = new Particle.DustOptions(Color.BLUE, 2);
-                    block.getWorld().spawnParticle(Particle.REDSTONE, location, 10, 0.2, 0.2, 0.2, 0.5, dustOptions);
+                    block.getWorld().spawnParticle(Particle.DUST, location, 10, 0.2, 0.2, 0.2, 0.5, dustOptions);
                 }
             }
         }

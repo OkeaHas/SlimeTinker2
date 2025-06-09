@@ -1,12 +1,12 @@
 package io.github.sefiraat.slimetinker.listeners;
 
-import io.github.sefiraat.slimetinker.events.friend.EventChannels;
-import io.github.sefiraat.slimetinker.events.friend.EventFriend;
-import io.github.sefiraat.slimetinker.events.friend.TraitEventType;
-import io.github.sefiraat.slimetinker.modifiers.Modifications;
-import io.github.sefiraat.slimetinker.utils.EntityUtils;
-import io.github.sefiraat.slimetinker.utils.Experience;
-import io.github.sefiraat.slimetinker.utils.ItemUtils;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Nonnull;
+
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -21,15 +21,16 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.inventory.ItemStack;
 
-import javax.annotation.Nonnull;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import io.github.sefiraat.slimetinker.events.friend.EventChannels;
 import static io.github.sefiraat.slimetinker.events.friend.EventChannels.checkArmour;
 import static io.github.sefiraat.slimetinker.events.friend.EventChannels.checkTool;
 import static io.github.sefiraat.slimetinker.events.friend.EventChannels.settlePotionEffects;
+import io.github.sefiraat.slimetinker.events.friend.EventFriend;
+import io.github.sefiraat.slimetinker.events.friend.TraitEventType;
+import io.github.sefiraat.slimetinker.modifiers.Modifications;
+import io.github.sefiraat.slimetinker.utils.EntityUtils;
+import io.github.sefiraat.slimetinker.utils.Experience;
+import io.github.sefiraat.slimetinker.utils.ItemUtils;
 
 public class EntityKilledListener implements Listener {
 
@@ -138,7 +139,7 @@ public class EntityKilledListener implements Listener {
                 Location location = entity.getLocation().clone().add(0.5, 0.5, 0.5);
                 entity.getWorld().dropItemNaturally(location, additionalDrop);
                 Particle.DustOptions dustOptions = new Particle.DustOptions(Color.BLUE, 2);
-                entity.getWorld().spawnParticle(Particle.REDSTONE, location, 10, 0.2, 0.2, 0.2, 0.5, dustOptions);
+                entity.getWorld().spawnParticle(Particle.DUST, location, 10, 0.2, 0.2, 0.2, 0.5, dustOptions);
             }
         }
     }

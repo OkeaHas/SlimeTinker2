@@ -1,18 +1,20 @@
 package io.github.sefiraat.slimetinker.utils;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
+import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
+
 import io.github.sefiraat.slimetinker.items.tinkermaterials.TinkerMaterialManager;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.skins.PlayerHead;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.skins.PlayerSkin;
 import net.md_5.bungee.api.ChatColor;
-import org.bukkit.Material;
-import org.bukkit.inventory.ItemStack;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 public final class GUIItems {
 
@@ -20,75 +22,75 @@ public final class GUIItems {
         throw new IllegalStateException("Utility class");
     }
 
-    public static final CustomItemStack MENU_BACKGROUND_INPUT = new CustomItemStack(
+    public static final ItemStack MENU_BACKGROUND_INPUT = CustomItemStack.create(
         Material.LIGHT_BLUE_STAINED_GLASS_PANE,
         ChatColor.BLUE + "Input",
         " "
     );
 
-    public static final CustomItemStack MENU_BACKGROUND_OUTPUT = new CustomItemStack(
+    public static final ItemStack MENU_BACKGROUND_OUTPUT = CustomItemStack.create(
         Material.ORANGE_STAINED_GLASS_PANE,
         ChatColor.RED + "Output",
         " "
     );
 
-    public static final CustomItemStack MENU_BACKGROUND_CAST = new CustomItemStack(
+    public static final ItemStack MENU_BACKGROUND_CAST = CustomItemStack.create(
         Material.LIME_STAINED_GLASS_PANE,
         ChatColor.GREEN + "Cast/Die",
         " "
     );
 
-    public static final CustomItemStack MENU_PREVIEW = new CustomItemStack(
+    public static final ItemStack MENU_PREVIEW = CustomItemStack.create(
         Material.LIME_STAINED_GLASS_PANE,
         ChatColor.GREEN + "Preview",
         " "
     );
 
-    public static final CustomItemStack MENU_BACKGROUND_PREVIEW = new CustomItemStack(
+    public static final ItemStack MENU_BACKGROUND_PREVIEW = CustomItemStack.create(
         Material.LIME_STAINED_GLASS_PANE,
         ChatColor.GREEN + "Preview",
         " "
     );
 
-    public static final CustomItemStack MENU_MARKER_ROD = new CustomItemStack(
+    public static final ItemStack MENU_MARKER_ROD = CustomItemStack.create(
         Material.RED_STAINED_GLASS_PANE,
         ChatColor.RED + "Rod Input",
         " "
     );
 
 
-    public static final CustomItemStack MENU_MARKER_BINDER = new CustomItemStack(
+    public static final ItemStack MENU_MARKER_BINDER = CustomItemStack.create(
         Material.RED_STAINED_GLASS_PANE,
         ChatColor.RED + "Binder Input",
         " "
     );
 
-    public static final CustomItemStack MENU_MARKER_HEAD = new CustomItemStack(
+    public static final ItemStack MENU_MARKER_HEAD = CustomItemStack.create(
         Material.RED_STAINED_GLASS_PANE,
         ChatColor.RED + "Head/Blade Input",
         " "
     );
 
-    public static final CustomItemStack MENU_MARKER_LINKS = new CustomItemStack(
+    public static final ItemStack MENU_MARKER_LINKS = CustomItemStack.create(
         Material.RED_STAINED_GLASS_PANE,
         ChatColor.RED + "Links Input",
         " "
     );
 
-    public static final CustomItemStack MENU_MARKER_GAMBESON = new CustomItemStack(
+    public static final ItemStack MENU_MARKER_GAMBESON = CustomItemStack.create(
         Material.RED_STAINED_GLASS_PANE,
         ChatColor.RED + "Gambeson Input",
         " "
     );
 
 
-    public static final CustomItemStack MENU_MARKER_PLATES = new CustomItemStack(
+    public static final ItemStack MENU_MARKER_PLATES = CustomItemStack.create(
         Material.RED_STAINED_GLASS_PANE,
         ChatColor.RED + "Plates Input",
         " "
     );
 
-    public static final CustomItemStack MENU_PURGE = new CustomItemStack(
+    public static final ItemStack MENU_PURGE = CustomItemStack.create(
         PlayerHead.getItemStack(PlayerSkin.fromBase64(SkullTextures.BUTTON_PURGE)),
         ThemeUtils.GUI_HEAD + "Purge Metals",
         "",
@@ -98,7 +100,7 @@ public final class GUIItems {
         ThemeUtils.CLICK_INFO + "Right Click: " + ChatColor.WHITE + "Remove ALL metals"
     );
 
-    public static final CustomItemStack MENU_ALLOY = new CustomItemStack(
+    public static final ItemStack MENU_ALLOY = CustomItemStack.create(
         PlayerHead.getItemStack(PlayerSkin.fromBase64(SkullTextures.BUTTON_ALLOY)),
         ThemeUtils.GUI_HEAD + "Alloy Metals",
         "",
@@ -106,7 +108,7 @@ public final class GUIItems {
         ThemeUtils.PASSIVE + "try to create an alloy."
     );
 
-    public static final CustomItemStack MENU_POUR = new CustomItemStack(
+    public static final ItemStack MENU_POUR = CustomItemStack.create(
         PlayerHead.getItemStack(PlayerSkin.fromBase64(SkullTextures.BUCKET_ORANGE)),
         ThemeUtils.GUI_HEAD + "Pour content",
         "",
@@ -115,14 +117,14 @@ public final class GUIItems {
         ThemeUtils.PASSIVE + "final product."
     );
 
-    public static final CustomItemStack MENU_CRAFT_WORKBENCH = new CustomItemStack(
+    public static final ItemStack MENU_CRAFT_WORKBENCH = CustomItemStack.create(
         Material.FLETCHING_TABLE,
         ThemeUtils.GUI_HEAD + "Craft",
         "",
         ThemeUtils.PASSIVE + "Let's get crafting!"
     );
 
-    public static final CustomItemStack MENU_CRAFT_TOOL_TABLE = new CustomItemStack(
+    public static final ItemStack MENU_CRAFT_TOOL_TABLE = CustomItemStack.create(
         Material.SMITHING_TABLE,
         ThemeUtils.GUI_HEAD + "Form Tool",
         "",
@@ -130,7 +132,7 @@ public final class GUIItems {
         ThemeUtils.PASSIVE + "parts (Rod, Binding and Head/Blade)"
     );
 
-    public static final CustomItemStack MENU_CRAFT_ARMOUR_TABLE = new CustomItemStack(
+    public static final ItemStack MENU_CRAFT_ARMOUR_TABLE = CustomItemStack.create(
         Material.SMITHING_TABLE,
         ThemeUtils.GUI_HEAD + "Form Armour",
         "",
@@ -138,7 +140,7 @@ public final class GUIItems {
         ThemeUtils.PASSIVE + "parts (Plate, Gambeson and Links)"
     );
 
-    public static final CustomItemStack MENU_CRAFT_REPAIR = new CustomItemStack(
+    public static final ItemStack MENU_CRAFT_REPAIR = CustomItemStack.create(
         Material.CARTOGRAPHY_TABLE,
         ThemeUtils.GUI_HEAD + "Repair",
         "",
@@ -146,14 +148,14 @@ public final class GUIItems {
         ThemeUtils.PASSIVE + "using the repair kit in the second."
     );
 
-    public static final CustomItemStack MENU_CRAFT_MOD = new CustomItemStack(
+    public static final ItemStack MENU_CRAFT_MOD = CustomItemStack.create(
         Material.GRINDSTONE,
         ThemeUtils.GUI_HEAD + "Apply Modification",
         "",
         ThemeUtils.PASSIVE + "Apply the modification to the tool."
     );
 
-    public static final CustomItemStack MENU_CRAFT_SWAP = new CustomItemStack(
+    public static final ItemStack MENU_CRAFT_SWAP = CustomItemStack.create(
         Material.LOOM,
         ThemeUtils.GUI_HEAD + "Swap out part",
         "",
@@ -161,7 +163,7 @@ public final class GUIItems {
     );
 
     @Nonnull
-    public static CustomItemStack menuLavaInfo(int fillPercent, int fillAmt, int fillMax) {
+    public static ItemStack menuLavaInfo(int fillPercent, int fillAmt, int fillMax) {
         ItemStack skull;
         if (fillPercent >= 95) {
             skull = PlayerHead.getItemStack(PlayerSkin.fromBase64(SkullTextures.TANK_LAVA_5));
@@ -180,14 +182,14 @@ public final class GUIItems {
         meta.add(ThemeUtils.GUI_HEAD + "Lava Tank");
         meta.add("");
         meta.add(ThemeUtils.CLICK_INFO + "Lava: " + ChatColor.WHITE + fillAmt + " / " + fillMax);
-        return new CustomItemStack(
+        return CustomItemStack.create(
             skull,
             meta
         );
     }
 
     @Nonnull
-    public static CustomItemStack menuMetalInfo(int fillPercent, int fillAmt, int fillMax, @Nullable Map<String, Integer> map) {
+    public static ItemStack menuMetalInfo(int fillPercent, int fillAmt, int fillMax, @Nullable Map<String, Integer> map) {
         ItemStack skull;
         if (fillPercent >= 95) {
             skull = PlayerHead.getItemStack(PlayerSkin.fromBase64(SkullTextures.TANK_METAL_5));
@@ -220,7 +222,7 @@ public final class GUIItems {
         meta.add(ThemeUtils.PASSIVE + "Metals pour out from the " + ChatColor.BOLD + "top" + ThemeUtils.PASSIVE + " first");
         meta.add("");
         meta.add(ThemeUtils.CLICK_INFO + "Click to cycle metal order.");
-        return new CustomItemStack(
+        return CustomItemStack.create(
             skull,
             meta
         );

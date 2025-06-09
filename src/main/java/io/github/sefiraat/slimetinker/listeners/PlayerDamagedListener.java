@@ -1,8 +1,10 @@
 package io.github.sefiraat.slimetinker.listeners;
 
-import io.github.sefiraat.slimetinker.events.friend.EventFriend;
-import io.github.sefiraat.slimetinker.events.friend.TraitEventType;
-import io.github.sefiraat.slimetinker.modifiers.Modifications;
+import java.util.Map;
+import java.util.concurrent.ThreadLocalRandom;
+
+import javax.annotation.Nonnull;
+
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.Particle;
@@ -15,13 +17,12 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.inventory.ItemStack;
 
-import javax.annotation.Nonnull;
-import java.util.Map;
-import java.util.concurrent.ThreadLocalRandom;
-
 import static io.github.sefiraat.slimetinker.events.friend.EventChannels.checkArmour;
 import static io.github.sefiraat.slimetinker.events.friend.EventChannels.checkTool;
 import static io.github.sefiraat.slimetinker.events.friend.EventChannels.settlePotionEffects;
+import io.github.sefiraat.slimetinker.events.friend.EventFriend;
+import io.github.sefiraat.slimetinker.events.friend.TraitEventType;
+import io.github.sefiraat.slimetinker.modifiers.Modifications;
 
 public class PlayerDamagedListener implements Listener {
 
@@ -102,7 +103,7 @@ public class PlayerDamagedListener implements Listener {
             if (rnd <= (level)) {
                 Entity e = event.getDamager();
                 Particle.DustOptions dustOptions = new Particle.DustOptions(Color.TEAL, 1);
-                e.getWorld().spawnParticle(Particle.REDSTONE, e.getLocation(), 50, 1.5, 1.5, 1.5, 1, dustOptions);
+                e.getWorld().spawnParticle(Particle.DUST, e.getLocation(), 50, 1.5, 1.5, 1.5, 1, dustOptions);
                 l.damage(event.getDamage());
                 event.setCancelled(true);
             }

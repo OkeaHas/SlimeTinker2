@@ -1,13 +1,13 @@
 package io.github.sefiraat.slimetinker.items.tinkermaterials.setup;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import io.github.sefiraat.slimetinker.items.Materials;
 import io.github.sefiraat.slimetinker.items.tinkermaterials.TinkerMaterial;
 import io.github.sefiraat.slimetinker.utils.Ids;
 import io.github.sefiraat.slimetinker.utils.SkullTextures;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
-
-import java.util.HashMap;
-import java.util.Map;
 
 @SuppressWarnings("SpellCheckingInspection")
 public final class TinkersMaterialsInfinity {
@@ -234,7 +234,7 @@ public final class TinkersMaterialsInfinity {
         .setFormBlock("INFINITY_SINGULARITY")
         .build();
 
-    private static final TinkerMaterial REINFORCED_DRACONIUM = new TinkerMaterial(Ids.REINFORCED_DRACONIUM, Materials.INGOT_CAST_REINFORCED_DRACONIUM, "#9532a8")
+    private static final TinkerMaterial REINFORCED_DRACONIUM = new TinkerMaterial(Ids.REINFORCED_DRACONIUM, Materials.INGOT_CAST_REINFORCED_DRACONIUM.item(), "#9532a8")
         .setLiquidTexture(SkullTextures.ALLOY_PURPLE_DEEP)
         .setTraitToolHead(Traits.INFINITY_REINFORCED_DRACONIUM_HEAD)
         .setFormNugget(Materials.NUGGET_CAST_REINFORCED_DRACONIUM.getItemId())

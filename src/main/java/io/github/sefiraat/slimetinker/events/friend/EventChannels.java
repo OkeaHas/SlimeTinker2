@@ -1,5 +1,13 @@
 package io.github.sefiraat.slimetinker.events.friend;
 
+import java.util.Map;
+
+import org.bukkit.attribute.Attribute;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
+
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.items.tinkermaterials.TinkerMaterial;
 import io.github.sefiraat.slimetinker.items.tinkermaterials.TinkerMaterialManager;
@@ -8,13 +16,6 @@ import io.github.sefiraat.slimetinker.utils.Experience;
 import io.github.sefiraat.slimetinker.utils.Ids;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
-import org.bukkit.attribute.Attribute;
-import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
-
-import java.util.Map;
 
 public final class EventChannels {
 
@@ -36,7 +37,7 @@ public final class EventChannels {
             int amplifier = entry.getValue() - 1;
             friend.getPlayer().addPotionEffect(new PotionEffect(potionEffectType, tickDuration, amplifier, false, false, true));
             if (resetHealth) {
-                double maxHealth = p.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue();
+                double maxHealth = p.getAttribute(Attribute.MAX_HEALTH).getValue();
                 if (health > maxHealth) {
                     health = maxHealth;
                 }
@@ -53,7 +54,7 @@ public final class EventChannels {
      * @return int for number of bonus ticks required
      */
     private static int getBonusTicks(PotionEffectType potionEffectType) {
-        if (potionEffectType.equals(PotionEffectType.CONFUSION)) {
+        if (potionEffectType.equals(PotionEffectType.NAUSEA)) {
             return 70;
         } else if (potionEffectType.equals(PotionEffectType.NIGHT_VISION)) {
             return 210;

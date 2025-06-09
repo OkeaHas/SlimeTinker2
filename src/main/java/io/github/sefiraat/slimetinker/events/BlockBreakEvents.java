@@ -1,14 +1,14 @@
 package io.github.sefiraat.slimetinker.events;
 
-import io.github.sefiraat.slimetinker.events.friend.EventFriend;
-import io.github.sefiraat.slimetinker.listeners.BlockMap;
-import io.github.sefiraat.slimetinker.managers.MemoryManager;
-import io.github.sefiraat.slimetinker.utils.GeneralUtils;
-import io.github.sefiraat.slimetinker.utils.ItemUtils;
-import io.github.sefiraat.slimetinker.utils.ThemeUtils;
-import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
-import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
-import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.concurrent.ThreadLocalRandom;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.Material;
@@ -21,14 +21,15 @@ import org.bukkit.inventory.Recipe;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.concurrent.ThreadLocalRandom;
+import io.github.sefiraat.slimetinker.events.friend.EventFriend;
+import io.github.sefiraat.slimetinker.listeners.BlockMap;
+import io.github.sefiraat.slimetinker.managers.MemoryManager;
+import io.github.sefiraat.slimetinker.utils.GeneralUtils;
+import io.github.sefiraat.slimetinker.utils.ItemUtils;
+import io.github.sefiraat.slimetinker.utils.ThemeUtils;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
+import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
+import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
 
 public final class BlockBreakEvents {
 
@@ -50,7 +51,7 @@ public final class BlockBreakEvents {
             return;
         }
 
-        PotionEffect effect = player.getPotionEffect(PotionEffectType.FAST_DIGGING);
+        PotionEffect effect = player.getPotionEffect(PotionEffectType.HASTE);
 
         if (effect != null && effect.getAmplifier() >= 9) {
             return;
@@ -61,7 +62,7 @@ public final class BlockBreakEvents {
         if (ThreadLocalRandom.current().nextInt(1, chanceUpper) == 1) {
             int nextLevel = effect == null ? 0 : Math.min(effect.getAmplifier() + 1, 9);
             int durationTicks = (int) (hasteEnd - timeNow) / 50;
-            PotionEffect newEffect = new PotionEffect(PotionEffectType.FAST_DIGGING, durationTicks, nextLevel);
+            PotionEffect newEffect = new PotionEffect(PotionEffectType.HASTE, durationTicks, nextLevel);
             player.addPotionEffect(newEffect);
             player.sendMessage(ThemeUtils.SUCCESS + "Haste Burst has hit level " + (nextLevel + 1) + "!");
         }
@@ -86,7 +87,7 @@ public final class BlockBreakEvents {
                     newDrops.add(ni);
                     friend.getRemoveDrops().add(i);
                     Particle.DustOptions dustOptions = new Particle.DustOptions(Color.fromRGB(130, 100, 30), 2);
-                    friend.getBlock().getWorld().spawnParticle(Particle.REDSTONE, friend.getBlock().getLocation(), 10, 0.2, 0.2, 0.2, 0.5, dustOptions);
+                    friend.getBlock().getWorld().spawnParticle(Particle.DUST, friend.getBlock().getLocation(), 10, 0.2, 0.2, 0.2, 0.5, dustOptions);
                     break;
                 }
             }
@@ -146,7 +147,7 @@ public final class BlockBreakEvents {
         }
         friend.setAddDrops(c);
         Particle.DustOptions dustOptions = new Particle.DustOptions(Color.fromRGB(130, 30, 120), 2);
-        friend.getBlock().getWorld().spawnParticle(Particle.REDSTONE, friend.getBlock().getLocation(), 10, 0.2, 0.2, 0.2, 0.5, dustOptions);
+        friend.getBlock().getWorld().spawnParticle(Particle.DUST, friend.getBlock().getLocation(), 10, 0.2, 0.2, 0.2, 0.5, dustOptions);
     }
 
     public static void rodEarth(EventFriend friend) {
@@ -197,7 +198,7 @@ public final class BlockBreakEvents {
                 friend.getRemoveDrops().add(i);
             }
             Particle.DustOptions dustOptions = new Particle.DustOptions(Color.fromRGB(30, 130, 40), 2);
-            friend.getBlock().getWorld().spawnParticle(Particle.REDSTONE, friend.getBlock().getLocation(), 10, 0.2, 0.2, 0.2, 0.5, dustOptions);
+            friend.getBlock().getWorld().spawnParticle(Particle.DUST, friend.getBlock().getLocation(), 10, 0.2, 0.2, 0.2, 0.5, dustOptions);
         }
         friend.setAddDrops(c);
     }
@@ -240,7 +241,7 @@ public final class BlockBreakEvents {
             }
             friend.getAddDrops().add(i);
             Particle.DustOptions dustOptions = new Particle.DustOptions(Color.fromRGB(60, 60, 60), 2);
-            friend.getBlock().getWorld().spawnParticle(Particle.REDSTONE, friend.getBlock().getLocation(), 10, 0.2, 0.2, 0.2, 0.5, dustOptions);
+            friend.getBlock().getWorld().spawnParticle(Particle.DUST, friend.getBlock().getLocation(), 10, 0.2, 0.2, 0.2, 0.5, dustOptions);
         }
     }
 
@@ -277,7 +278,9 @@ public final class BlockBreakEvents {
             SlimefunItems.CARBON_CHUNK
         );
         if (GeneralUtils.testChance(1, 200)) {
-            friend.getAddDrops().add(list.get(GeneralUtils.roll(list.size(), false)));
+            SlimefunItemStack slimefunItemStack = list.get(GeneralUtils.roll(list.size(), false));
+            ItemStack itemStack = slimefunItemStack.item();
+            friend.getAddDrops().add(itemStack);
         }
     }
 

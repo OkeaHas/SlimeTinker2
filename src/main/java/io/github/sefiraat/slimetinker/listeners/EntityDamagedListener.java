@@ -1,9 +1,10 @@
 package io.github.sefiraat.slimetinker.listeners;
 
-import io.github.sefiraat.slimetinker.events.friend.EventFriend;
-import io.github.sefiraat.slimetinker.events.friend.TraitEventType;
-import io.github.sefiraat.slimetinker.modifiers.Modifications;
-import io.github.sefiraat.slimetinker.utils.EntityUtils;
+import java.util.Map;
+import java.util.concurrent.ThreadLocalRandom;
+
+import javax.annotation.Nonnull;
+
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.Particle;
@@ -17,13 +18,13 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import javax.annotation.Nonnull;
-import java.util.Map;
-import java.util.concurrent.ThreadLocalRandom;
-
 import static io.github.sefiraat.slimetinker.events.friend.EventChannels.checkArmour;
 import static io.github.sefiraat.slimetinker.events.friend.EventChannels.checkTool;
 import static io.github.sefiraat.slimetinker.events.friend.EventChannels.settlePotionEffects;
+import io.github.sefiraat.slimetinker.events.friend.EventFriend;
+import io.github.sefiraat.slimetinker.events.friend.TraitEventType;
+import io.github.sefiraat.slimetinker.modifiers.Modifications;
+import io.github.sefiraat.slimetinker.utils.EntityUtils;
 
 public class EntityDamagedListener implements Listener {
 
@@ -63,7 +64,7 @@ public class EntityDamagedListener implements Listener {
                 friend.setSegganesson(0);
                 friend.setSegganessonDamage(0);
                 Particle.DustOptions dustOptions = new Particle.DustOptions(Color.fromRGB(50, 120, 200), 5);
-                e.getWorld().spawnParticle(Particle.REDSTONE, e.getLocation(), 50, 1, 1, 1, 0.5, dustOptions, true);
+                e.getWorld().spawnParticle(Particle.DUST, e.getLocation(), 50, 1, 1, 1, 0.5, dustOptions, true);
             }
 
             if (friend.getCharged() >= 2) { // Special case for Charged - event is dependant on two materials, consumers up a value to trigger this
@@ -71,8 +72,8 @@ public class EntityDamagedListener implements Listener {
                 if (rnd == 1) {
                     friend.setDamageMod(friend.getDamageMod() * 3);
                     Particle.DustOptions dustOptions = new Particle.DustOptions(Color.YELLOW, 5);
-                    e.getWorld().spawnParticle(Particle.REDSTONE, e.getLocation(), 50, 1, 1, 1, 0.5, dustOptions, true);
-                    PotionEffect potionEffect = new PotionEffect(PotionEffectType.SLOW, 40, 99);
+                    e.getWorld().spawnParticle(Particle.DUST, e.getLocation(), 50, 1, 1, 1, 0.5, dustOptions, true);
+                    PotionEffect potionEffect = new PotionEffect(PotionEffectType.SLOWNESS, 40, 99);
                     e.addPotionEffect(potionEffect);
                 }
             }

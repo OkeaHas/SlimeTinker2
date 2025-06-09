@@ -1,5 +1,12 @@
 package io.github.sefiraat.slimetinker.itemgroups;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+
+import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.groups.FlexItemGroup;
@@ -13,16 +20,10 @@ import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.TextComponent;
-import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
-import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
-
-import javax.annotation.ParametersAreNonnullByDefault;
 
 public class MainFlexGroup extends FlexItemGroup {
 
-    private static final ItemStack DOCS_ITEM_STACK = new CustomItemStack(
+    private static final ItemStack DOCS_ITEM_STACK = CustomItemStack.create(
         Material.BOOK,
         ThemeUtils.GUIDE + "Documentation Wiki",
         ThemeUtils.PASSIVE + "Click to get the link to the",
