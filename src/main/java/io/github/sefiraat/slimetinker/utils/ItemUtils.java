@@ -267,7 +267,7 @@ public final class ItemUtils {
         String matBind = getToolBindingMaterial(c);
         String matRod = getToolRodMaterial(c);
         String toolType = getToolTypeName(c);
-
+        
         setName(itemStack, matHead, matBind, matRod, toolType);
     }
 

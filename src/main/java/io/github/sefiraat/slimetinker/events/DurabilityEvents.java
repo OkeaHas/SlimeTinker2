@@ -1,14 +1,17 @@
 package io.github.sefiraat.slimetinker.events;
 
-import io.github.sefiraat.slimetinker.events.friend.EventFriend;
-import io.github.sefiraat.slimetinker.utils.ItemUtils;
-import io.github.sefiraat.slimetinker.utils.ThemeUtils;
+import java.util.concurrent.ThreadLocalRandom;
+
+import javax.annotation.Nonnull;
+
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import java.util.concurrent.ThreadLocalRandom;
+import io.github.sefiraat.slimetinker.events.friend.EventFriend;
+import io.github.sefiraat.slimetinker.utils.ItemUtils;
+import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 
 public final class DurabilityEvents {
 
@@ -26,21 +29,41 @@ public final class DurabilityEvents {
         friend.setDurabilityMod(friend.getDurabilityMod() + 1);
     }
 
-    public static void headSolder(EventFriend friend) {
-        ItemMeta im = friend.getTool().getItemMeta();
-        assert im != null;
+    public static void headSolder(@Nonnull EventFriend friend) {
+        ItemStack tool = friend.getTool();
+        
+        // Periksa apakah tool adalah null
+        if (tool == null) {
+            System.out.println("Tool is null, cannot proceed.");
+            return; // Atau lakukan penanganan lain yang sesuai
+        }
+
+        ItemMeta im = tool.getItemMeta();
+        
+        // Periksa apakah ItemMeta adalah null
+        if (im == null) {
+            System.out.println("ItemMeta is null, cannot proceed.");
+            return; // Atau lakukan penanganan lain yang sesuai
+        }
+
         Damageable damageable = (Damageable) im;
-        damageable.setDamage(friend.getTool().getType().getMaxDurability() - 1);
-        friend.getTool().setItemMeta(im);
+        damageable.setDamage(tool.getType().getMaxDurability() - 1);
+        tool.setItemMeta(im);
         friend.setCancelEvent(true);
     }
 
-    public static void headAluminum(EventFriend friend) {
+
+    public static void headAluminum(@Nonnull EventFriend friend) {
+        ItemStack tool = friend.getTool();
+        if (tool == null) {
+            return; // alat tidak ada, langsung keluar dari fungsi
+        }
         if (ThreadLocalRandom.current().nextInt(1, 4) == 1) {
-            ItemUtils.incrementRepair(friend.getTool(), 1);
+            ItemUtils.incrementRepair(tool, 1);
             friend.setCancelEvent(true);
         }
     }
+
 
     public static void rodAluminum(EventFriend friend) {
         friend.setDurabilityMod(friend.getDurabilityMod() + 1);
@@ -62,9 +85,13 @@ public final class DurabilityEvents {
         friend.setDurabilityMod(0);
     }
 
-    public static void headSingAluminum(EventFriend friend) {
+    public static void headSingAluminum(@Nonnull EventFriend friend) {
+        ItemStack tool = friend.getTool();
+        if (tool == null) {
+            return; // Hentikan jika tidak ada alat
+        }
         if (ThreadLocalRandom.current().nextInt(1, 4) == 1) {
-            ItemUtils.incrementRepair(friend.getTool(), 2);
+            ItemUtils.incrementRepair(tool, 2);
             friend.setCancelEvent(true);
         }
     }
@@ -73,19 +100,33 @@ public final class DurabilityEvents {
         friend.setDurabilityMod(friend.getDurabilityMod() + 1);
     }
 
-    public static void rodAdvancedAlloy(EventFriend friend) {
-        Damageable d = (Damageable) friend.getTool().getItemMeta();
-        assert d != null;
+    public static void rodAdvancedAlloy(@Nonnull EventFriend friend) {
+        ItemStack tool = friend.getTool();
+        
+        if (tool == null) {
+            return;
+        }
+
+        ItemMeta im = tool.getItemMeta();
+        
+        if (im == null || !(im instanceof Damageable)) {
+            return; 
+        }
+
+        Damageable d = (Damageable) im;
+
         if (d.getDamage() < 50) {
             return;
         }
-        ItemStack i = new ItemStack(Material.IRON_INGOT, 1);
-        if (friend.getPlayer().getInventory().containsAtLeast(new ItemStack(Material.IRON_INGOT), 1)) {
-            ItemUtils.repairItem(friend.getTool(), 50);
-            friend.getPlayer().getInventory().removeItem(i);
+
+        ItemStack repairItem = new ItemStack(Material.IRON_INGOT, 1);
+        
+        // Periksa apakah pemain memiliki item yang cukup
+        if (friend.getPlayer().getInventory().containsAtLeast(repairItem, 1)) {
+            ItemUtils.repairItem(tool, 50); // Perbaiki alat
+            friend.getPlayer().getInventory().removeItem(repairItem); // Hapus item dari inventori
             friend.getPlayer().sendMessage(ThemeUtils.SUCCESS + "Your tool was repaired with some iron you had lying around!");
         }
-
     }
 
     public static void headScrap(EventFriend friend) {

@@ -6,6 +6,8 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import javax.annotation.Nonnull;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.Effect;
@@ -56,14 +58,23 @@ public final class EntityDamageEvents {
         friend.getPlayer().sendMessage(ThemeUtils.WARNING + "Nice");
     }
 
-    public static void headAluBrass(EventFriend friend) {
+    public static void headAluBrass(@Nonnull EventFriend friend) {
+        Entity entity = friend.getDamagedEntity();
+        
+        // Periksa apakah entity adalah null
+        if (entity == null) {
+            return; // Hentikan jika tidak ada entitas
+        }
+
         int rnd = ThreadLocalRandom.current().nextInt(1, 4);
         if (rnd == 1) {
             int rndX = ThreadLocalRandom.current().nextInt(-25, 26);
             int rndY = ThreadLocalRandom.current().nextInt(0, 5);
             int rndZ = ThreadLocalRandom.current().nextInt(-25, 26);
-            Entity entity = friend.getDamagedEntity();
+            
             Location location = entity.getLocation().clone().add(rndX, rndY, rndZ);
+            
+            // Periksa apakah blok di lokasi baru adalah AIR
             if (entity.getWorld().getBlockAt(location).getType() == Material.AIR) {
                 entity.teleport(location);
                 entity.getWorld().playEffect(friend.getPlayer().getLocation(), Effect.ENDEREYE_LAUNCH, 10);
@@ -398,9 +409,9 @@ public final class EntityDamageEvents {
     }
 
     public static void plateBillon(EventFriend friend) {
-        if (friend.getDamagedEntity() instanceof LivingEntity) {
+        if (friend.getDamagedEntity() instanceof LivingEntity livingEntity) {
             friend.setCancelEvent(true);
-            LivingEntity l = (LivingEntity) friend.getDamagedEntity();
+            LivingEntity l = livingEntity;
             l.setHealth(Math.min(l.getAttribute(Attribute.MAX_HEALTH).getValue(), l.getHealth() + friend.getInitialDamage()));
         }
 

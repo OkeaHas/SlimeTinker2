@@ -2,6 +2,8 @@ package io.github.sefiraat.slimetinker.events;
 
 import java.util.concurrent.ThreadLocalRandom;
 
+import javax.annotation.Nonnull;
+
 import org.bukkit.Color;
 import org.bukkit.Effect;
 import org.bukkit.Location;
@@ -85,9 +87,15 @@ public final class PlayerDamagedEvents {
         }
     }
 
-    public static void rodReinforcedSlimesteel(EventFriend friend) {
-        if (!ItemUtils.isTinkersBroken(friend.getTool())) {
-            ItemUtils.damageTinkersItem(friend.getTool(), (int) friend.getInitialDamage());
+    public static void rodReinforcedSlimesteel(@Nonnull EventFriend friend) {
+        ItemStack tool = friend.getTool();
+
+        if (tool == null) {
+            return;
+        }
+
+        if (!ItemUtils.isTinkersBroken(tool)) {
+            ItemUtils.damageTinkersItem(tool, (int) friend.getInitialDamage());
             friend.setDamageMod(friend.getDamageMod() / 2);
         }
     }
