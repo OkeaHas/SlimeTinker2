@@ -192,8 +192,16 @@
                 <configuration>
                     <relocations>
                         <relocation>
+                            <pattern>io.github.mooy1.infinityexpansion</pattern>
+                            <shadedPattern>io.github.sefiraat.slimetinker.infinitylib</shadedPattern>
+                        </relocation>
+                        <relocation>
+                            <pattern>co.aikar.commands</pattern>
+                            <shadedPattern>io.github.sefiraat.slimetinker.acf</shadedPattern>
+                        </relocation>
+                        <relocation>
                             <pattern>org.bstats</pattern>
-                            <shadedPattern>io.github.sefiraat.networks.bstats</shadedPattern>
+                            <shadedPattern>io.github.sefiraat.slimetinker.bstats</shadedPattern>
                         </relocation>
                     </relocations>
                     <filters>
@@ -256,13 +264,19 @@
             <groupId>io.github.mooy1</groupId>
             <artifactId>InfinityExpansion</artifactId>
             <version>90e11bc</version>
-            <scope>provided</scope>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.bstats</groupId>
             <artifactId>bstats-bukkit</artifactId>
-            <version>3.0.0</version>
+            <version>3.1.0</version>
             <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.findbugs</groupId>
+            <artifactId>jsr305</artifactId>
+            <version>3.0.2</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.google.code.findbugs</groupId>
